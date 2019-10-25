@@ -18,6 +18,11 @@
         background-color: black;
         z-index: 10;
     }
+    
+    #homebutton {
+        width: 30px;
+        margin: 7px 18px;
+    }
     /*Bereich der Sidebar*/
     
     sidebar {
@@ -89,7 +94,7 @@
     content.active {
         margin-left: 170px;
     }
-    /*Bereich Content*/
+    /*Ab hier Bereich Content mit mehreren ToDo-Listen*/
     
     #content_area {
         margin: 4em 1em;
@@ -97,22 +102,47 @@
         display: flex;
         align-items: flex-start;
     }
-    /*Mittiger Bereich der ToDo-Listen*/
-    /*Liste in weißem Feld*/
+    /*---wird als Erstes angezeigt (ab hier)---*/
+    /*Div Klasse neue_liste umschließt die Funktion newList() und den Titel h4 jeder neuen Liste*/
     
-    .list_areaClass {
-        position: relative;
+    .neue_liste {
+        margin: 0 1em;
         min-width: 270px;
         background-color: white;
         padding: 6px;
         float: left;
-        margin: 0 1em;
+        display: flex;
     }
+    /*h4 = Titel jeder neuen Liste*/
     
-    .titelListe {
-        font-size: 16px;
-        font-weight: bold;
+    #neue_listeTitel {
+        color: black;
     }
+    /*Klasse jeder neuen Liste innerhalb des Boards*/
+    
+    .neue_ListeClass {
+        max-width: 270px;
+        height: auto;
+        padding: 6px;
+        display: table;
+    }
+    /*Form_Feld innerhalb von dem div neue_ListeClass*/
+    
+    #neuesFormular {
+        vertical-align: center;
+    }
+    /*---wird als Erstes angezeigt (bis hier)---*/
+    /*Einzelne Liste mit weißem Hintergrund*/
+    
+    .list_areaClass {
+        margin: 0 1em;
+        min-width: 270px;
+        background-color: white;
+        padding: 6px;
+        float: left;
+        position: relative;
+    }
+    /*Box_List = Bereich mit dem Form-Feld mit dem man neue Items hinzufügen kann*/
     
     .box_list {
         max-width: 270px;
@@ -120,21 +150,32 @@
         padding: 6px;
         display: table;
     }
-    /*Titel für "Incompleted Tasks*/
+    /*Input Feld "Was musst du erledigen?"*/
+    
+    input {
+        margin-left: -3px;
+        margin-right: 22px;
+        border: none;
+        padding: 6px 3px;
+        float: left;
+        width: 200px;
+    }
+    /*Titel für Incomplete oder completed Tasks*/
     
     h3 {
         font-size: 14px;
         padding: 6px;
-        border-bottom: 1px solid black;
-        color: grey;
+        border-bottom: 1px solid #F2F2F2;
+        color: black;
     }
+    /*Zwei Listen: Incomplete Tasks und completed Tasks*/
     
-    #ul_incompleteTasks {
+    .ul_incompleteTasks {
         margin: 0;
         padding: 0;
     }
     
-    #ul_completedTasks {
+    .ul_completedTasks {
         text-decoration: line-through;
         margin: 0;
         padding: 0;
@@ -151,20 +192,12 @@
         -ms-user-select: none;
         user-select: none;
     }
+    /*Check-Icon, Add-Button, Close-Button, Edit-Button*/
     
     .checkbox {
         float: left;
         width: 20px;
         margin-right: 5px;
-    }
-    
-    input {
-        margin-left: -3px;
-        margin-right: 22px;
-        border: none;
-        padding: 6px 3px;
-        float: left;
-        width: 200px;
     }
     
     .addButton {
@@ -190,7 +223,7 @@
         z-index: 5;
         text-align: center;
     }
-    /*Beim Hovern über den Close-Button - Automatisches Hovern über bttnBereich*/
+    /*Beim Hovern über den Close-Button - Automatisches Hovern über bttnBereich und damit über den Edit-Button*/
     
     .close:hover,
     .bttnBereich:hover {
@@ -205,6 +238,7 @@
         color: white;
         visibility: visible;
     }
+    /*Der versteckte Edit-Button liegt innerhalb dem div bttnBereich*/
     
     .bttnBereich {
         visibility: hidden;
@@ -216,39 +250,4 @@
         top: 0px;
         z-index: 5;
         padding: 5px;
-    }
-    /*Klasse der Icons (Löschen, Hinzufügen, Edit)*/
-    
-    .bttnBereichIcons {
-        width: 20px;
-        padding: 5px;
-    }
-    
-    #homebutton {
-        width: 30px;
-        margin: 7px 18px;
-    }
-    
-    .neue_liste {
-        margin: 0 1em;
-        min-width: 270px;
-        background-color: white;
-        padding: 6px;
-        float: right;
-        display: flex;
-    }
-    
-    .neue_ListeClass {
-        max-width: 270px;
-        height: auto;
-        padding: 6px;
-        display: table;
-    }
-    
-    #neue_listeTitel {
-        color: black;
-    }
-    
-    #neuesFormular {
-        vertical-align: center;
     }

@@ -1,27 +1,25 @@
 // Neues List-Item beim Klicken auf den "+"-Button oder Enter
 function newItem(listen_id, inputWert) {
     var li = document.createElement("li");
-    li.id = 'liItem_ID';
+    li.className = "liItem_ID";
     var t = document.createTextNode(inputWert);
 
     //Input Icon checkbox vor dem List-Item
     var liCheckbox = document.createElement("input");
     liCheckbox.type = "checkbox";
-    liCheckbox.id = 'check';
     liCheckbox.className = "checkbox";
 
-    //EventListener kann mehrmals ausgeführt werden
-    //target --> Ziel also liCheckbox
+    //EventListener kann mehrmals ausgeführt werden, target zeigt aktuelles Ziel also liCheckbox
     liCheckbox.addEventListener("change", function(event) {
+        var ul = document.querySelector(".ul_completedTasks ")
+        var li = document.querySelector(".liItem_ID");
         if (event.target.checked == true) {
-            var ul = document.getElementById("ul_completedTasks");
-            var li = document.getElementById("liItem_ID");
             ul.appendChild(li);
             li.className = 'checked';
         }
     })
 
-    //Sobald kein Input-Wert eingegeben wird, kommt die Aufforderung "Ungüktige Eingabe! Bitte ToDo eingeben!"
+    //Sobald kein Input-Wert eingegeben wird, kommt die Aufforderung "Ungültige Eingabe! Bitte ToDo eingeben!"
     if (inputWert !== '') {
         document.getElementById(listen_id).appendChild(li);
     } else {
@@ -31,11 +29,10 @@ function newItem(listen_id, inputWert) {
     //Nach jedem neu erstellten List-Item wird automatisch ein Div dahinter erstellt (hier: Close- und Edit-Icon)
     var closeIconDiv = document.createElement("div"); // Close-Icon
 
-    //Edit-Icon hinzufügen
-    var editIcon = document.createElement("img");
+    var editIcon = document.createElement("img"); // Edit-Icon
     editIcon.src = "pictures/edit_icon.png";
     editIcon.className = "bttnBereich";
-    editIcon.onclick = function() {
+    editIcon.onclick = function() { //----> dieser Code-Abschnitt ist noch zu überprüfen
         if (li.class == 'checked') {
             alert("Aufgabe ist schon erledigt und kann nicht mehr editiert werden!");
         } else {
@@ -50,32 +47,23 @@ function newItem(listen_id, inputWert) {
     closeIconDiv.addEventListener("click", function() {
         closeIconDiv.parentElement.style.display = "none";
     });
-    //List Items in die ul einfügen (uncompleted Tasks)
-    var ul_incomplete = document.getElementById("ul_incompleteTasks");
-    //Alles hinzufügen (appending)
-    ul_incomplete.append(li);
-    li.appendChild(liCheckbox);
-    li.appendChild(t);
-    closeIconDiv.className = "close";
-    closeIconDiv.appendChild(txt);
-    li.appendChild(closeIconDiv);
-    li.appendChild(editIcon);
-
     for (i = 0; i < close.length; i++) {
         close[i].onclick = function() {
             var newDiv = this.parentElement;
             newDiv.style.display = "none";
         }
     }
-}
 
-//Markiert das ToDo als completed
-var taskCompleted = function() {
-    //Append the task list item to the #completed-tasks
-    var listItem = this.parentNode;
-    completedTasksHolder.appendChild(listItem);
-    bindTaskEvents(listItem, taskIncomplete);
-
+    //Neue List Items werden automatisch in die uncompleted Task List eingefügt
+    //Alles hinzufügen (appending)
+    //!!!! PROBLEM ID der Liste verknüpfen mit der Klasse ul_incompleteTasks --> Sonst Einfügen neuer Elemente in andere Listen
+    document.querySelector(".ul_incompleteTasks ").append(li); //Hinzufügen zur uncompleted Task List
+    li.appendChild(liCheckbox);
+    li.appendChild(t);
+    closeIconDiv.className = "close";
+    closeIconDiv.appendChild(txt);
+    li.appendChild(closeIconDiv);
+    li.appendChild(editIcon);
 }
 
 //Fügt eine ganz neue Liste hinzu
@@ -85,9 +73,9 @@ function newList(defaultTitle = null) {
     //div ist die list_areaClass, die die weiße Box zeigt
     var div = document.createElement("div");
     div.className = "list_areaClass";
-    div.id = listenID;
+    div.id = listenID; //diese Liste bekommt die generierte ID
 
-    //boxlist ist das div innerhalb des oberen div (für die Liste)
+    //boxlist ist das div innerhalb der list_areaClass (für die Liste)
     var boxlist = document.createElement("div");
     boxlist.className = "box_list"
 
@@ -95,7 +83,6 @@ function newList(defaultTitle = null) {
     var form = document.createElement("form");
     form.setAttribute("action", "#");
     form.onsubmit = function() {
-
         // Wert des Input Felds auslesen und neues Todo Item anlegen
         var todoEintrag = document.querySelector("#" + listenID + " #input_ToDoNeu").value;
         newItem(listenID, todoEintrag);
@@ -103,33 +90,22 @@ function newList(defaultTitle = null) {
         // Wert des Input Felds zurücksetzen
         document.querySelector("#" + listenID + " #input_ToDoNeu").value = "";
     };
-    //form.setAttribute("onsubmit", "return newItem()");
-    //form.setEventListener("onsubmit", newItem(listenID, "test"));
 
     //input ist das Input-Feld innerhalb des Formulars (form)
     var input = document.createElement("input");
     input.type = "text";
     input.id = 'input_ToDoNeu';
     input.placeholder = "Was musst du erledigen?";
-    //  form.setAttribute("onsubmit", "return newItem()");
 
-    //ul incompleteTasks wird hinzugefügt
-    var ul = document.createElement("ul");
-    ul.id = 'ul_incompleteTasks';
-
-    //ul completedTasks wird hinzugefügt
-    var ulCompleted = document.createElement("ul");
-    ulCompleted.id = 'ul_completedTasks';
-
-    //h fügt die H4 innerhalb der boxlist hinzu
+    //h fügt die H4 innerhalb der boxlist hinzu = Titel der einzelnen Listen
     var h = document.createElement("H4");
     h.contentEditable = "true";
 
-    // nehme den default Title falls er einen Wert hat
-    // andernfalls nehme den Inhalt des Inputfelds
+    // DefaultTitle nehmen, falls definiert - anderenfalls Inhalt des Input-Feldes nehmen
     var inputWert = defaultTitle || document.getElementById("input_titel").value;
     var t = document.createTextNode(inputWert);
 
+    //Plus-Button für einen neuen To-Do-Eintrag
     var divBttn = document.createElement("div");
     divBttn.className = "addButton";
     divBttn.onclick = function() {
@@ -143,15 +119,25 @@ function newList(defaultTitle = null) {
     };
     var textBttn = document.createTextNode("+");
 
-    //Titel für die "ToDo" Items (noch nicht completed Tasks)
+    //ul incompleteTasks wird hinzugefügt
+    var ul = document.createElement("ul");
+    ul.className = 'ul_incompleteTasks';
+
+    //ul completedTasks wird hinzugefügt
+    var ulCompleted = document.createElement("ul");
+    ulCompleted.className = 'ul_completedTasks';
+
+    //Titel für die "ToDo" Items der incomplete Task List
     var titel_incomplete = document.createElement("h3");
     var text_h3 = document.createTextNode("ToDo");
     titel_incomplete.appendChild(text_h3);
 
+    //Titel für die erledigten "ToDo" (completed Task List)
     var titel_complete = document.createElement("h3");
     var text_h3 = document.createTextNode("Completed");
     titel_complete.appendChild(text_h3);
 
+    //Appending
     h.appendChild(t); //H4 enthält den Input-Wert t (Eingabe des Namens der neuen Liste)
     form.appendChild(input); //Form enthält das Inputfeld
     divBttn.appendChild(textBttn); //Button-Div enthält den Text "+"
@@ -165,15 +151,17 @@ function newList(defaultTitle = null) {
     div.appendChild(titel_complete);
     div.appendChild(ulCompleted); //Liste mit completed Tasks wird hinzugefügt
 
+    //Der Content-Area allgemein das div list_areaClass hinzufügen (zeigt die weiße Box an)
     var Ausgabebereich = document.getElementById('content_area');
     console.log(Ausgabebereich)
     Ausgabebereich.append(div);
+
 
     // Listen Titel input zurücksetzen
     document.getElementById("input_titel").value = "";
 }
 
-
+//Funktion Slider Sidebar
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle('active');
     document.getElementById("content").classList.toggle('active');
@@ -194,10 +182,10 @@ function generateRandomUniqueID() {
 
 //-----------------------------------------------------
 // Initialer Aufruf zum Erstellen der ersten Liste als Beispiel
-
+/*
 window.addEventListener('load', function() {
     // Dieser Code wird ausgeführt, wenn die Seite fertig geladen hat
     // Würde der Code zu früh ausgeführt werden, gäbe es die HTML Elemente noch nicht
     console.log("Füge eine Liste hinzu");
     newList("Beispielliste");
-})
+})*/

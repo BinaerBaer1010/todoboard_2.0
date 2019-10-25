@@ -13,9 +13,7 @@
 
 <body>
     <header>
-
-        <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
-
+        <img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton">
     </header>
 
     <sidebar id="sidebar">
@@ -39,15 +37,6 @@
                 </tr>
             </table>
 
-
-            <img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton">
-
-            </header>
-
-            <sidebar></sidebar>
-
-
-
         </div>
         <div class="toggle_btn" onclick="toggleSidebar()">
             <img id="toggle_icon" onclick="changeImage()" src=" pictures/right_icon.PNG ">
@@ -56,48 +45,30 @@
 
     <content id="content">
         <div id="content_area">
-            <div id="list_area" class="list_areaClass">
-                <div class="box_list">
-                    <h4>Beispielliste</h4>
-                    <form action="#" onsubmit="return newItem()">
-                        <input type="text" id="input_ToDo" placeholder="Was musst du erledigen?">
-                        <div onclick="newItem()" class="addButton">+</div>
-                    </form>
-
-                </div>
-                <ul id="meineListe">
-                </ul>
+            <!-- Fügt nun auch die erste Liste mit JavaScript hinzu -->
+            <!--<div id="list_area" class="list_areaClass">
+            <div class="box_list">
+                <h4>Beispielliste</h4>
+                <form action="#" onsubmit="return newItem()">
+                    <input type="text" id="input_ToDo" placeholder="Was musst du erledigen?">
+                    <div onclick="newItem()" class="addButton">+</div>
+                </form>
             </div>
+            <ul id="meineListe">
+            </ul>
+        </div>-->
 
-            <ul id="meineListe ">
-
-                <content>
-                    <div id="content_area">
-                        <div id="list_area" class="list_areaClass">
-                            <div class="box_list">
-                                <h4>Beispielliste</h4>
-                                <form action="#" onsubmit="return newItem()">
-                                    <input type="text" id="input_ToDo" placeholder="Was musst du erledigen?">
-                                    <div onclick="newItem()" class="addButton">+</div>
-                                </form>
-                            </div>
-                            <ul id="meineListe">
-                            </ul>
-                        </div>
-
-
-                        <div class="neue_liste">
-                            <div id="neue_listeID" class="neue_ListeClass">
-                                <form action="#" onsubmit="return newList()" name="neueListe" id="neuesFormular">
-                                    <input type="text" id="input_titel" placeholder="Neue Liste hinzufügen">
-                                    <div onclick="newList()" class="addButton">+</div>
-                                </form>
-                            </div>
-                            <h4 id="neue_listeTitel"></h4>
-                        </div>
-                </content>
-
-
+            <div class="neue_liste">
+                <div id="neue_listeID" class="neue_ListeClass">
+                    <form action="#" onsubmit="return newList()" name="neueListe" id="neuesFormular">
+                        <input type="text" id="input_titel" placeholder="Neue Liste hinzufügen">
+                        <div onclick="newList()" class="addButton">+</div>
+                    </form>
+                </div>
+                <h4 id="neue_listeTitel"></h4>
+            </div>
+        </div>
+    </content>
 
 </body>
 

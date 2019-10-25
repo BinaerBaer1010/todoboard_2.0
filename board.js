@@ -14,8 +14,8 @@ function newItem(listen_id, inputWert) {
         var ul = document.querySelector(".ul_completedTasks ")
         var li = document.querySelector(".liItem_ID");
         if (event.target.checked == true) {
-            ul.appendChild(li);
-            li.className = 'checked';
+            ul.append(li);
+            li.className = 'liItem_ID checked';
         }
     })
 
@@ -75,12 +75,9 @@ function newList(defaultTitle = null) {
     div.className = "list_areaClass";
     div.id = listenID; //diese Liste bekommt die generierte ID
 
-    //boxlist ist das div innerhalb der list_areaClass (für die Liste)
-    var boxlist = document.createElement("div");
-    boxlist.className = "box_list"
-
-    //form ist das Formular innerhalb des div (boxlist)
+    //form ist das Formular innerhalb des div (weiße Box)
     var form = document.createElement("form");
+    form.className = "form_zu_erledigen";
     form.setAttribute("action", "#");
     form.onsubmit = function() {
         // Wert des Input Felds auslesen und neues Todo Item anlegen
@@ -97,7 +94,7 @@ function newList(defaultTitle = null) {
     input.id = 'input_ToDoNeu';
     input.placeholder = "Was musst du erledigen?";
 
-    //h fügt die H4 innerhalb der boxlist hinzu = Titel der einzelnen Listen
+    //h ist der Titel der einzelnen Listen
     var h = document.createElement("H4");
     h.contentEditable = "true";
 
@@ -142,10 +139,9 @@ function newList(defaultTitle = null) {
     form.appendChild(input); //Form enthält das Inputfeld
     divBttn.appendChild(textBttn); //Button-Div enthält den Text "+"
     form.appendChild(divBttn); //Form enthält das Button-Div Element
-    boxlist.appendChild(h); //Boxlist ist das Div um die Liste herum und enthält die Überschrift H4
-    boxlist.appendChild(form); //Boxlist enthält das Formular
+    div.appendChild(h); //Div (weiße Box) enthält die Überschrift H4
+    div.appendChild(form); //Div (weiße Box) enthält das Formular
 
-    div.appendChild(boxlist); //Div mit weißem Hintergrund/ weiße Box enthält das Boxlist-Div
     div.appendChild(titel_incomplete);
     div.appendChild(ul); //Im Div wird die ul icompleteTasks erstellt
     div.appendChild(titel_complete);

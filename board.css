@@ -113,52 +113,45 @@
         float: left;
         display: flex;
     }
-    /*h4 = Titel jeder neuen Liste*/
+    /*neue_listeTitel = h4 = Titel jeder neuen Liste*/
     
     #neue_listeTitel {
         color: black;
     }
-    /*Klasse jeder neuen Liste innerhalb des Boards*/
+    /*Form_Feld innerhalb von dem div neue_liste*/
     
-    .neue_ListeClass {
-        max-width: 270px;
-        height: auto;
-        padding: 6px;
-        display: table;
-    }
-    /*Form_Feld innerhalb von dem div neue_ListeClass*/
-    
-    #neuesFormular {
+    #form_newList {
         vertical-align: center;
+        padding: 6px;
     }
     /*---wird als Erstes angezeigt (bis hier)---*/
+    /*---ab hier: Dynamische neue Listen---*/
     /*Einzelne Liste mit weißem Hintergrund*/
     
     .list_areaClass {
         margin: 0 1em;
         min-width: 270px;
         background-color: white;
-        padding: 6px;
+        padding: 12px;
         float: left;
         position: relative;
     }
-    /*Box_List = Bereich mit dem Form-Feld mit dem man neue Items hinzufügen kann*/
     
-    .box_list {
-        max-width: 270px;
-        height: auto;
-        padding: 6px;
-        display: table;
+    h4 {
+        margin: 8px 6px;
     }
-    /*Input Feld "Was musst du erledigen?"*/
+    /*Formular mit dem Input Feld "Was musst du erledigen?"*/
+    
+    .form_zu_erledigen input {
+        margin: 6px 0px;
+    }
     
     input {
         margin-left: -3px;
-        margin-right: 22px;
+        margin-right: 15px;
         border: none;
-        padding: 6px 3px;
-        float: left;
-        width: 200px;
+        padding: 6px 6px;
+        width: 190px;
     }
     /*Titel für Incomplete oder completed Tasks*/
     

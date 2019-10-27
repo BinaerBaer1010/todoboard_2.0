@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" media="screen" href="board.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="board.js"></script>
+    <title>Planningboard</title>
+</head>
+
+<body id="wallpaper_city">
+    <header>
+        <table>
+            <tr>
+                <td>
+                    <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
+                </td>
+                <th>
+                    <h1>Boardname</h1>
+                </th>
+            </tr>
+        </table>
+
+    </header>
+
+    <sidebar id="sidebar">
+        <div class="sidebar_content">
+            <select onchange="location = this.value;">
+                <option selected="selected" disabled="disabled">Bitte auswählen</option>
+                <option value="board.html">Board 1</option>
+                <option value="board2.html">Board 2</option>
+                <option value="board3.html">Board 3</option>
+                <option value="board4.html">Board 4</option>
+                <option value="board5.html">Board 5</option>
+                <option value="board6.html">Board 6</option>
+            </select>
+
+            <table>
+                <tr>
+                    <td>
+                        <img class="sidebar_contentImg" id="picture_1" src="pictures/add_icon.PNG">
+                    </td>
+                    <th>
+                        Neues Board
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        <img class="sidebar_contentImg" id="picture_2" src="pictures/person_icon.PNG">
+                    </td>
+                    <th>
+                        Meine Aufgaben
+                    </th>
+                </tr>
+            </table>
+
+        </div>
+        <div class="toggle_btn" onclick="toggleSidebar()">
+            <img id="toggle_icon" onclick="changeImage()" src=" pictures/right_icon.PNG ">
+        </div>
+    </sidebar>
+
+    <content id="content">
+        <div id="content_area">
+
+            <div class="neue_liste">
+                <form action="#" onsubmit="return newList()" name="neueListe" id="form_newList">
+                    <input type="text" id="input_titel" placeholder="Neue Liste hinzufügen">
+                    <div onclick="newList()" class="addButton">+</div>
+                </form>
+                <h4 id="neue_listeTitel"></h4>
+            </div>
+        </div>
+    </content>
+
+</body>
+
+</html>

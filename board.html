@@ -5,19 +5,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="board.css" type="text/css">
+    <link rel="stylesheet" media="screen" href="board.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="board.js"></script>
     <title>Planningboard</title>
 </head>
 
-<body>
+<body id="wallpaper_canyon">
     <header>
-        <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
+        <table>
+            <tr>
+                <td>
+                    <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
+                </td>
+                <th>
+                    <h1>Boardname</h1>
+                </th>
+            </tr>
+        </table>
     </header>
 
     <sidebar id="sidebar">
         <div class="sidebar_content">
+            <select onchange="location = this.value;">
+                <option selected="selected" disabled="disabled">Bitte auswählen</option>
+                <option value="board.html">Board 1</option>
+                <option value="board2.html">Board 2</option>
+                <option value="board3.html">Board 3</option>
+                <option value="board4.html">Board 4</option>
+                <option value="board5.html">Board 5</option>
+                <option value="board6.html">Board 6</option>
+            </select>
+
             <table>
                 <tr>
                     <td>

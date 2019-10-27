@@ -11,10 +11,12 @@ function newItem(listen_id, inputWert) {
 
     //EventListener kann mehrmals ausgeführt werden, target zeigt aktuelles Ziel also liCheckbox
     liCheckbox.addEventListener("change", function(event) {
-        var ul = document.querySelector(".ul_completedTasks ")
+        var ul = document.querySelector(".ul_completedTasks");
         var li = document.querySelector(".liItem_ID");
         if (event.target.checked == true) {
-            ul.append(li);
+            //ul.append(li);
+            document.getElementById(listen_id).appendChild(ul).append(li);
+            //   ul.append(li);
             li.className = 'liItem_ID checked';
         }
     })
@@ -57,7 +59,8 @@ function newItem(listen_id, inputWert) {
     //Neue List Items werden automatisch in die uncompleted Task List eingefügt
     //Alles hinzufügen (appending)
     //!!!! PROBLEM ID der Liste verknüpfen mit der Klasse ul_incompleteTasks --> Sonst Einfügen neuer Elemente in andere Listen
-    document.querySelector(".ul_incompleteTasks ").append(li); //Hinzufügen zur uncompleted Task List
+
+    document.querySelector(".ul_incompleteTasks").append(li); //Hinzufügen zur uncompleted Task List
     li.appendChild(liCheckbox);
     li.appendChild(t);
     closeIconDiv.className = "close";
@@ -69,6 +72,11 @@ function newItem(listen_id, inputWert) {
 //Fügt eine ganz neue Liste hinzu
 function newList(defaultTitle = null) {
     const listenID = generateRandomUniqueID(); //Aufruf der Funktion, die eine einzigartige ID erstellt
+
+    //Jede Liste bekommt eine einzigartige ID, die JS generiert
+    function generateRandomUniqueID() {
+        return '_' + Math.random().toString(36).substr(2, 9);
+    }
 
     //div ist die list_areaClass, die die weiße Box zeigt
     var div = document.createElement("div");
@@ -106,7 +114,6 @@ function newList(defaultTitle = null) {
     var divBttn = document.createElement("div");
     divBttn.className = "addButton";
     divBttn.onclick = function() {
-
         // Wert des Input Felds auslesen und neues Todo Item anlegen
         var todoEintrag = document.querySelector("#" + listenID + " #input_ToDoNeu").value;
         newItem(listenID, todoEintrag);
@@ -152,7 +159,6 @@ function newList(defaultTitle = null) {
     console.log(Ausgabebereich)
     Ausgabebereich.append(div);
 
-
     // Listen Titel input zurücksetzen
     document.getElementById("input_titel").value = "";
 }
@@ -170,10 +176,6 @@ function changeImage() {
     } else {
         image.src = "pictures/left_icon.PNG";
     }
-}
-//Jede Liste bekommt eine einzigartige ID, die JS generiert
-function generateRandomUniqueID() {
-    return '_' + Math.random().toString(36).substr(2, 9);
 }
 
 //-----------------------------------------------------

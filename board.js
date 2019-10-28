@@ -1,3 +1,11 @@
+var request = fetch("https://shopping-lists-api.herokuapp.com/api/v1/lists", {
+        headers: {
+            "Authorization": "b5ba360e5154f4744c1dfbbec43ade8f"
+        }
+    })
+    .then(res => res.json())
+    .then(lists => console.log(lists));
+
 // Neues List-Item beim Klicken auf den "+"-Button oder Enter
 function newItem(listen_id, inputWert) {
     var li = document.createElement("li");

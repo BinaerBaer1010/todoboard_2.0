@@ -48,6 +48,7 @@
     h1 {
         color: white;
         font-size: 14px;
+        text-decoration: none;
     }
     /*Bereich der Sidebar*/
     
@@ -105,7 +106,6 @@
         border: 1px solid black;
         outline: none;
         cursor: pointer;
-        background: url('arrow.png') no-repeat;
         background-position: 80% center;
     }
     /*Damit im IE der Pfeil der Select-Liste nicht erscheint*/

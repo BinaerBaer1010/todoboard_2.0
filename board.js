@@ -1,29 +1,43 @@
+function generateRandomUniqueID() {
+    return '_' + Math.random().toString(36).substr(2, 9);
+}
+
 // Neues List-Item beim Klicken auf den "+"-Button oder Enter
 function newItem(listen_id, inputWert) {
-    var li = document.createElement("li");
-    li.className = "liItem_ID";
-    var t = document.createTextNode(inputWert);
 
-    //Input Icon checkbox vor dem List-Item
+    var li = document.createElement("li");
+    var uuid = generateRandomUniqueID(); //jedes List-Item bekommt eine eigene ID
+    li.id = "listitem" + uuid; //ID von li ist immer "listitem" + die generierte ID Bsp. "listitem_ljrm2t63v"
+    var t = document.createElement("span");
+    var text = document.createTextNode(inputWert);
+    t.appendChild(text);
+
+    //Input Icon Checkbox vor dem List-Item
     var liCheckbox = document.createElement("input");
     liCheckbox.type = "checkbox";
     liCheckbox.className = "checkbox";
 
     //EventListener kann mehrmals ausgeführt werden, target zeigt aktuelles Ziel also liCheckbox
     liCheckbox.addEventListener("change", function(event) {
-        var ul = document.querySelector(".ul_completedTasks");
-        var li = document.querySelector(".liItem_ID");
+        var li = event.currentTarget.parentElement; //Parent Element von liCheckbox => li
+
         if (event.target.checked == true) {
-            //ul.append(li);
-            document.getElementById(listen_id).appendChild(ul).append(li);
-            //   ul.append(li);
-            li.className = 'liItem_ID checked';
+            var ul = document.querySelector("#ul_completed" + listen_id); //hinter jede ul kommt die listen_id der Gesamtliste
+            ul.append(li);
+            li.classList.add('checked'); //wenn checked=true, dann wird die Klasse checked hinzugefügt (zum Durchstreichen des Item)
+        } else { //wenn  Checkbox-Haken wieder entfernt wird, wird es wieder zu uncompleted Tasks hinzugefügt
+            var ul = document.querySelector("#ul" + listen_id);
+            ul.append(li);
+            li.classList.remove('checked');
         }
     })
 
     //Sobald kein Input-Wert eingegeben wird, kommt die Aufforderung "Ungültige Eingabe! Bitte ToDo eingeben!"
+    //Neue List Items werden automatisch in die uncompleted Task List eingefügt
     if (inputWert !== '') {
-        document.getElementById(listen_id).appendChild(li);
+        var idt = "ul" + listen_id;
+        console.log(idt);
+        document.getElementById('ul' + listen_id).appendChild(li);
     } else {
         alert("Ungültige Eingabe! Bitte ToDo eingeben!");
     }
@@ -35,10 +49,17 @@ function newItem(listen_id, inputWert) {
     editIcon.src = "pictures/edit_icon.png";
     editIcon.className = "bttnBereich";
     editIcon.onclick = function() { //----> dieser Code-Abschnitt ist noch zu überprüfen
-        if (li.class == 'checked') {
+        if (li.classList.contains('checked')) {
             alert("Aufgabe ist schon erledigt und kann nicht mehr editiert werden!");
         } else {
-            li.contentEditable = 'true';
+            var userinput = prompt("Bitte hier das geänderte ToDo eingeben:");
+            if (userinput == null || userinput == "") {
+
+            } else {
+                var textSpan = li.getElementsByTagName('span')[0];
+                textSpan.innerText = userinput;
+            }
+
         }
     }
 
@@ -56,11 +77,7 @@ function newItem(listen_id, inputWert) {
         }
     }
 
-    //Neue List Items werden automatisch in die uncompleted Task List eingefügt
     //Alles hinzufügen (appending)
-    //!!!! PROBLEM ID der Liste verknüpfen mit der Klasse ul_incompleteTasks --> Sonst Einfügen neuer Elemente in andere Listen
-
-    document.querySelector(".ul_incompleteTasks").append(li); //Hinzufügen zur uncompleted Task List
     li.appendChild(liCheckbox);
     li.appendChild(t);
     closeIconDiv.className = "close";
@@ -70,18 +87,13 @@ function newItem(listen_id, inputWert) {
 }
 
 //Fügt eine ganz neue Liste hinzu
-function newList(defaultTitle = null) {
-    const listenID = generateRandomUniqueID(); //Aufruf der Funktion, die eine einzigartige ID erstellt
-
-    //Jede Liste bekommt eine einzigartige ID, die JS generiert
-    function generateRandomUniqueID() {
-        return '_' + Math.random().toString(36).substr(2, 9);
-    }
+function newList(id, defaultTitle = null) {
+    const listenID = id;
 
     //div ist die list_areaClass, die die weiße Box zeigt
     var div = document.createElement("div");
     div.className = "list_areaClass";
-    div.id = listenID; //diese Liste bekommt die generierte ID
+    div.id = listenID;
 
     //form ist das Formular innerhalb des div (weiße Box)
     var form = document.createElement("form");
@@ -126,10 +138,13 @@ function newList(defaultTitle = null) {
     //ul incompleteTasks wird hinzugefügt
     var ul = document.createElement("ul");
     ul.className = 'ul_incompleteTasks';
+    ul.id = 'ul' + listenID;
+
 
     //ul completedTasks wird hinzugefügt
     var ulCompleted = document.createElement("ul");
     ulCompleted.className = 'ul_completedTasks';
+    ulCompleted.id = 'ul_completed' + listenID;
 
     //Titel für die "ToDo" Items der incomplete Task List
     var titel_incomplete = document.createElement("h3");
@@ -141,6 +156,10 @@ function newList(defaultTitle = null) {
     var text_h3 = document.createTextNode("Completed");
     titel_complete.appendChild(text_h3);
 
+    //Divs pro Listen
+    var div_incomplete = document.createElement("div");
+    var div_complete = document.createElement("div");
+
     //Appending
     h.appendChild(t); //H4 enthält den Input-Wert t (Eingabe des Namens der neuen Liste)
     form.appendChild(input); //Form enthält das Inputfeld
@@ -149,10 +168,12 @@ function newList(defaultTitle = null) {
     div.appendChild(h); //Div (weiße Box) enthält die Überschrift H4
     div.appendChild(form); //Div (weiße Box) enthält das Formular
 
-    div.appendChild(titel_incomplete);
-    div.appendChild(ul); //Im Div wird die ul icompleteTasks erstellt
-    div.appendChild(titel_complete);
-    div.appendChild(ulCompleted); //Liste mit completed Tasks wird hinzugefügt
+    div.appendChild(div_incomplete);
+    div_incomplete.appendChild(titel_incomplete);
+    div_incomplete.appendChild(ul); //Im Div wird die ul icompleteTasks erstellt
+    div.appendChild(div_complete);
+    div_complete.appendChild(titel_complete);
+    div_complete.appendChild(ulCompleted); //Liste mit completed Tasks wird hinzugefügt
 
     //Der Content-Area allgemein das div list_areaClass hinzufügen (zeigt die weiße Box an)
     var Ausgabebereich = document.getElementById('content_area');
@@ -179,11 +200,40 @@ function changeImage() {
 }
 
 //-----------------------------------------------------
-// Initialer Aufruf zum Erstellen der ersten Liste als Beispiel
-/*
-window.addEventListener('load', function() {
-    // Dieser Code wird ausgeführt, wenn die Seite fertig geladen hat
-    // Würde der Code zu früh ausgeführt werden, gäbe es die HTML Elemente noch nicht
-    console.log("Füge eine Liste hinzu");
-    newList("Beispielliste");
-})*/
+// Initialer Aufruf zum Verbinden mit der API
+async function loadData() {
+    /*JS ist synchron, deswegen 
+    --> Hier: Nicht auf Antwort vom Server warten, sondern soll Code weiterladen und wenn die Antwort der API kommt, dann soll der untenstehende Code ausgeführt werden */
+
+    var res = await fetch('https://shopping-lists-api.herokuapp.com/api/v1/lists', {
+        method: 'get',
+        headers: new Headers({
+            'Authorization': "716d793360dd91455b8e8209bc29d3d9"
+        })
+    });
+    var data = await res.json(); //sendet json zurück
+    for (var i = 0; i < data.length; i++) {
+        var tempObj = data[i];
+        newList(tempObj._id, tempObj.name) //greift auf newList() Funktion (s.o.) zu: ID + Name kommt von API
+    } //Fügt man nun in der API eine neue Liste hinzu, erscheint diese automatisch auf dem Board
+    console.log(data);
+}
+//?? Post Funktioniert noch nicht 
+async function createList(name) {
+    var inputWert = defaultTitle || document.getElementById("input_titel").value;
+    document.getElementById("input_titel").value = "";
+    const newItem = new newItem(tempObj._id, inputWert);
+    var response = await fetch('https://shopping-lists-api.herokuapp.com/api/v1/lists', {
+        method: 'post',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': "716d793360dd91455b8e8209bc29d3d9",
+            'Content-Type': 'application/json'
+        },
+        body: newItem
+    }).then(function(response) {
+        return response.text();
+    }).then(function(text) {
+        console.log(text);
+    })
+}

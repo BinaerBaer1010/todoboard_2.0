@@ -25,25 +25,15 @@
     </header>
     <sidebar id="sidebar">
         <div class="sidebar_content">
-            <table>
-                <tr onclick="">
-                    <td>
-                        <img class="sidebar_contentImg" id="picture_1" src="pictures/add_icon.PNG">
-                    </td>
-                    <th>
-                        Neues Board
-                    </th>
-                </tr>
-                <tr onclick="">
-                    <td>
-                        <img class="sidebar_contentImg" id="picture_2" src="pictures/person_icon.PNG">
-                    </td>
-                    <th>
-                        Meine Aufgaben
-                    </th>
-                </tr>
-            </table>
-
+            <select onchange="location = this.value;">
+                    <option selected="selected" disabled="disabled">Bitte auswählen</option>
+                    <option value="board.html">ToDo Board</option>
+                    <option value="board2.html">Board 2</option>
+                    <option value="board3.html">Board 3</option>
+                    <option value="board4.html">Board 4</option>
+                    <option value="board5.html">Board 5</option>
+                    <option value="board6.html">Board 6</option>
+                </select>
         </div>
         <div class="toggle_btn" onclick="toggleSidebar()">
             <img id="toggle_icon" onclick="changeImage()" src=" pictures/right_icon.PNG ">
@@ -55,42 +45,42 @@
                 <a href="board.html">
                     <img class="content_area_img" src="https://www.brillen-sehhilfen.de/optik/image/grau.png">
                     <iframe class="verkleinert" src="board.html" frameborder="0" allowTransparency="true"></iframe>
-                    <h2 class="content_area_h2">Board Name</h2>
+                    <h2 class="content_area_h2">ToDo Board</h2>
                 </a>
             </div>
             <div class="content_area">
                 <a href="board2.html">
                     <img class="content_area_img" src="https://www.brillen-sehhilfen.de/optik/image/grau.png">
                     <iframe class="verkleinert" src="board2.html" frameborder="0" allowTransparency="true"></iframe>
-                    <h2 class="content_area_h2">Board Name</h2>
+                    <h2 class="content_area_h2">Board 2</h2>
                 </a>
             </div>
             <div class="content_area">
                 <a href="board3.html">
                     <img class="content_area_img" src="https://www.brillen-sehhilfen.de/optik/image/grau.png">
                     <iframe class="verkleinert" src="board3.html" frameborder="0" allowTransparency="true"></iframe>
-                    <h2 class="content_area_h2">Board Name</h2>
+                    <h2 class="content_area_h2">Board 3</h2>
                 </a>
             </div>
             <div class="content_area">
                 <a href="board4.html">
                     <img class="content_area_img" src="https://www.brillen-sehhilfen.de/optik/image/grau.png">
                     <iframe class="verkleinert" src="board4.html" frameborder="0" allowTransparency="true"></iframe>
-                    <h2 class="content_area_h2">Board Name</h2>
+                    <h2 class="content_area_h2">Board 4</h2>
                 </a>
             </div>
             <div class="content_area">
                 <a href="board5.html">
                     <img class="content_area_img" src="https://www.brillen-sehhilfen.de/optik/image/grau.png">
                     <iframe class="verkleinert" src="board5.html" frameborder="0" allowTransparency="true"></iframe>
-                    <h2 class="content_area_h2">Board Name</h2>
+                    <h2 class="content_area_h2">Board 5</h2>
                 </a>
             </div>
             <div class="content_area">
                 <a href="board6.html">
                     <img class="content_area_img" src="https://www.brillen-sehhilfen.de/optik/image/grau.png">
                     <iframe class="verkleinert" src="board6.html" frameborder="0" allowTransparency="true"></iframe>
-                    <h2 class="content_area_h2">Board Name</h2>
+                    <h2 class="content_area_h2">Board 6</h2>
                 </a>
             </div>
         </div>

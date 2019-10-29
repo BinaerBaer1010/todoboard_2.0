@@ -67,26 +67,46 @@ sidebar .toggle_btn #toggle_icon {
     top: 100px;
 }
 
-.sidebar_content th {
-    text-align: left;
-    font-weight: bold;
+
+/*Select-List zum Switchen zwischen verschiedenen Boards*/
+
+select {
+    -moz-appearance: none;
+    /*Für Safari und Google Chrome*/
+    -webkit-appearance: none;
+    appearance: none;
+    width: 118%;
+    height: 40px;
+    padding-left: 10px;
+    margin-left: 20px;
+    background-color: #424242;
+    color: #fff;
+    border: 1px solid black;
+    outline: none;
+    cursor: pointer;
+    background-position: 80% center;
+}
+
+
+/*Damit im IE der Pfeil der Select-Liste nicht erscheint*/
+
+select::-ms-expand {
+    display: none;
+}
+
+select:hover {
     color: white;
+    background-color: black;
+    outline: none;
 }
 
-.sidebar_contentImg {
-    height: 35px;
-    width: 35px;
-    padding: 10px;
+option {
+    background: #424242;
 }
 
-.sidebar_content img #picture_1 {
-    position: fixed;
-    top: 0px;
-}
-
-.sidebar_content img #picture_2 {
-    position: fixed;
-    top: 0px;
+option:hover {
+    background-color: #222;
+    color: white;
 }
 
 content {

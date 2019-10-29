@@ -35,8 +35,8 @@ function newItem(listen_id, inputWert) {
     //Sobald kein Input-Wert eingegeben wird, kommt die Aufforderung "Ungültige Eingabe! Bitte ToDo eingeben!"
     //Neue List Items werden automatisch in die uncompleted Task List eingefügt
     if (inputWert !== '') {
-        var idt = "ul" + listen_id;
-        console.log(idt);
+        var idt = "ul" + listen_id; //uncompleted Task List hat automatisch die ID der Liste
+        //    console.log(idt);
         document.getElementById('ul' + listen_id).appendChild(li);
     } else {
         alert("Ungültige Eingabe! Bitte ToDo eingeben!");
@@ -100,6 +100,7 @@ function newList(id, defaultTitle = null) {
     form.className = "form_zu_erledigen";
     form.setAttribute("action", "#");
     form.onsubmit = function() {
+
         // Wert des Input Felds auslesen und neues Todo Item anlegen
         var todoEintrag = document.querySelector("#" + listenID + " #input_ToDoNeu").value;
         newItem(listenID, todoEintrag);
@@ -177,11 +178,8 @@ function newList(id, defaultTitle = null) {
 
     //Der Content-Area allgemein das div list_areaClass hinzufügen (zeigt die weiße Box an)
     var Ausgabebereich = document.getElementById('content_area');
-    console.log(Ausgabebereich)
+    //console.log(Ausgabebereich)
     Ausgabebereich.append(div);
-
-    // Listen Titel input zurücksetzen
-    document.getElementById("input_titel").value = "";
 }
 
 //Funktion Slider Sidebar
@@ -201,7 +199,7 @@ function changeImage() {
 
 //-----------------------------------------------------
 // Initialer Aufruf zum Verbinden mit der API
-async function loadData() {
+async function loadData() { //wird in board.html mit body onload="loadData()" geladen
     /*JS ist synchron, deswegen 
     --> Hier: Nicht auf Antwort vom Server warten, sondern soll Code weiterladen und wenn die Antwort der API kommt, dann soll der untenstehende Code ausgeführt werden */
 
@@ -218,22 +216,28 @@ async function loadData() {
     } //Fügt man nun in der API eine neue Liste hinzu, erscheint diese automatisch auf dem Board
     console.log(data);
 }
-//?? Post Funktioniert noch nicht 
+
 async function createList(name) {
-    var inputWert = defaultTitle || document.getElementById("input_titel").value;
-    document.getElementById("input_titel").value = "";
-    const newItem = new newItem(tempObj._id, inputWert);
+    var listenName = {
+        name: document.getElementById('input_titel').value //Liest Wert aus dem Input-Feld aus (=Listen-Titel)
+    };
+    console.log(document.getElementById('input_titel').value)
+
     var response = await fetch('https://shopping-lists-api.herokuapp.com/api/v1/lists', {
-        method: 'post',
-        headers: {
-            'Accept': 'application/json',
-            'Authorization': "716d793360dd91455b8e8209bc29d3d9",
-            'Content-Type': 'application/json'
-        },
-        body: newItem
-    }).then(function(response) {
-        return response.text();
-    }).then(function(text) {
-        console.log(text);
-    })
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': "716d793360dd91455b8e8209bc29d3d9",
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(listenName)
+        }).then(res => {
+            return res.json()
+        })
+        .then(data => console.log(data))
+        .catch(error => console.log('ERROR'))
+
+    console.log(JSON.stringify(listenName));
+    // Listen-Titel aus dem Inputfeld, nach dem Aulesen (s.o.) zurücksetzen
+    document.getElementById("input_titel").value = "";
 }

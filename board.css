@@ -11,6 +11,7 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
         background-color: #F2F2F2;
+        position: relative;
     }
     /*Verschiedene Hintergrund-Bilder für den body*/
     
@@ -49,6 +50,14 @@
         color: white;
         font-size: 14px;
         text-decoration: none;
+    }
+    
+    #heute {
+        color: #747474;
+        font-size: 14px;
+        float: right;
+        margin-right: 20px;
+        margin-top: -38px;
     }
     /*Bereich der Sidebar*/
     
@@ -97,7 +106,7 @@
         /*Für Safari und Google Chrome*/
         -webkit-appearance: none;
         appearance: none;
-        width: 118%;
+        width: 112%;
         height: 40px;
         padding-left: 10px;
         margin-left: 20px;
@@ -232,6 +241,14 @@
     }
     /*Check-Icon, Add-Button, Close-Button, Edit-Button*/
     
+    .trashIcon {
+        width: 20px;
+        height: 17px;
+        cursor: pointer;
+        float: right;
+        opacity: 0.5;
+    }
+    
     .checkbox {
         float: left;
         width: 20px;
@@ -254,7 +271,7 @@
     
     .close {
         position: absolute;
-        right: 8px;
+        right: 0px;
         top: 0px;
         padding: 8px 1px;
         width: 28px;

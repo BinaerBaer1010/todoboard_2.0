@@ -75,7 +75,7 @@ select {
     /*Für Safari und Google Chrome*/
     -webkit-appearance: none;
     appearance: none;
-    width: 118%;
+    width: 112%;
     height: 40px;
     padding-left: 10px;
     margin-left: 20px;
@@ -149,6 +149,19 @@ content.active {
     z-index: 10;
     padding-top: 70px;
     padding-left: 100px;
+    position: absolute;
+    font-weight: bolder;
+    font-size: 25px;
+    pointer-events: none;
+    cursor: default;
+    text-decoration: none;
+    color: white;
+}
+
+.content_area_h2_Board {
+    z-index: 10;
+    padding-top: 70px;
+    padding-left: 115px;
     position: absolute;
     font-weight: bolder;
     font-size: 25px;

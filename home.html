@@ -10,9 +10,19 @@
     <title>Home</title>
 </head>
 
-<body>
+<body onload="currentDate()">
     <header>
-        <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
+        <table>
+            <tr>
+                <td>
+                    <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
+                </td>
+                <th>
+                    <h1>HOME</h1>
+                </th>
+            </tr>
+        </table>
+        <span id="heute">today</span>
     </header>
     <sidebar id="sidebar">
         <div class="sidebar_content">

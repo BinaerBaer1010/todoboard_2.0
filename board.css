@@ -11,7 +11,6 @@
         font-family: Arial, Helvetica, sans-serif;
         font-size: 14px;
         background-color: #F2F2F2;
-        position: relative;
     }
     /*Verschiedene Hintergrund-Bilder für den body*/
     
@@ -39,6 +38,9 @@
         grid-area: header;
         background-color: black;
         z-index: 10;
+        position: fixed;
+        width: 100vw;
+        height: 45px;
     }
     
     #homebutton {
@@ -65,6 +67,7 @@
         grid-area: sidebar;
         background-color: #424242;
         position: absolute;
+        position: fixed;
         width: 240px;
         height: 100%;
         left: -170px;
@@ -141,6 +144,7 @@
     content {
         grid-area: content;
         transition: all 300ms linear;
+        position: relative;
     }
     
     content.active {

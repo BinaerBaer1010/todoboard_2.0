@@ -12,4 +12,28 @@ function changeImage() {
     }
 }
 
-/*API KEY: b5ba360e5154f4744c1dfbbec43ade8f*/
+//-----------------------------------------------------
+//Aktuelles Datum
+function formatDate(date) {
+    var monthNames = [
+        "JAN", "FEB", "MAR",
+        "APR", "MAI", "JUN", "JUL",
+        "AUG", "SEPT", "OCT",
+        "NOV", "DEZ"
+    ];
+    var weekday = [
+        "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
+    ];
+
+    var day = date.getDate();
+    var monthIndex = date.getMonth();
+    var weekIndex = date.getDay();
+    var year = date.getFullYear();
+
+    return weekday[weekIndex] + ' | ' + monthNames[monthIndex] + ' ' + day + ' | ' + year;
+}
+
+function currentDate() {
+    var d = formatDate(new Date());
+    document.getElementById("heute").innerHTML = d;
+}

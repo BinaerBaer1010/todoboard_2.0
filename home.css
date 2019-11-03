@@ -28,6 +28,14 @@ h1 {
     font-size: 14px;
 }
 
+#heute {
+    color: #747474;
+    font-size: 14px;
+    float: right;
+    margin-right: 20px;
+    margin-top: -38px;
+}
+
 sidebar {
     grid-area: sidebar;
     background-color: #424242;

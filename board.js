@@ -251,7 +251,7 @@ async function createList(id, name) {
     };
     console.log("Async function createList:" + document.getElementById('input_titel').value)
 
-    var response = await fetch(linkBasis, {
+    var res = await fetch(linkBasis, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -323,7 +323,7 @@ async function createItem(id, taskName) {
         console.log(data);
         newItem(id, inputValue.name, data._id)
         location.reload(true); //--> Evtl andere Möglichkeit dafür??
-        loadData();
+        //loadData();
     }).catch(() => console.log('ERROR'))
 }
 //-----------------------------------------------------
@@ -419,7 +419,7 @@ async function updateItemName(id, itemId, taskName) {
         console.log(data);
         newItem(id, inputValue.name, data._id)
         location.reload(true); //--> Evtl andere Möglichkeit dafür??
-        loadData();
+        //loadData();
     }).catch(() => console.log('ERROR'))
 }
 //-----------------------------------------------------

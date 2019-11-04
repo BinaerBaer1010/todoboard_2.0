@@ -1,9 +1,26 @@
+@media only screen and (max-width: 480px) {
+    sidebar {
+        visibility: hidden;
+    }
+}
+
+@media only screen and (min-width: 480px) and (max-width: 900px) {
+    sidebar {
+        visibility: hidden;
+    }
+}
+html {
+    -webkit-text-size-adjust: 100%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
 body {
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template-rows: 45px 1fr;
-    grid-template-columns: 180px 1fr;
+    grid-template-columns: 0 1fr;
     grid-template-areas: "header header" "sidebar content";
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
@@ -28,6 +45,7 @@ h1 {
     font-size: 14px;
 }
 
+
 #heute {
     color: #747474;
     font-size: 14px;
@@ -36,94 +54,11 @@ h1 {
     margin-top: -38px;
 }
 
-sidebar {
-    grid-area: sidebar;
-    background-color: #424242;
-    position: absolute;
-    width: 240px;
-    height: 100%;
-    left: -170px;
-    transition: all 300ms linear;
-    z-index: 8;
-}
-
-sidebar.active {
-    left: 0px;
-}
-
-sidebar .toggle_btn {
-    position: absolute;
-    right: 10px;
-    bottom: 4px;
-}
-
-sidebar .toggle_btn.active {
-    position: absolute;
-    right: 170px;
-    bottom: 4px;
-}
-
-sidebar .toggle_btn #toggle_icon {
-    height: 35px;
-    width: 35px;
-    margin-right: 7px;
-    margin-bottom: 7px;
-}
-
-.sidebar_content {
-    position: fixed;
-    top: 100px;
-}
-
-
-/*Select-List zum Switchen zwischen verschiedenen Boards*/
-
-select {
-    -moz-appearance: none;
-    /*Für Safari und Google Chrome*/
-    -webkit-appearance: none;
-    appearance: none;
-    width: 112%;
-    height: 40px;
-    padding-left: 10px;
-    margin-left: 20px;
-    background-color: #424242;
-    color: #fff;
-    border: 1px solid black;
-    outline: none;
-    cursor: pointer;
-    background-position: 80% center;
-}
-
-
-/*Damit im IE der Pfeil der Select-Liste nicht erscheint*/
-
-select::-ms-expand {
-    display: none;
-}
-
-select:hover {
-    color: white;
-    background-color: black;
-    outline: none;
-}
-
-option {
-    background: #424242;
-}
-
-option:hover {
-    background-color: #222;
-    color: white;
-}
-
 content {
     grid-area: content;
     transition: all 300ms linear;
-}
-
-content.active {
-    margin-left: 170px;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 #list_area {

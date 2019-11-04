@@ -11,16 +11,38 @@
 </head>
 
 <body onload="loadData(), currentDate()">
-    <header>
-        <table>
+<header>
+    <table class="table_header">
             <tr>
-                <td>
+                <td id="home_button">
                     <a href="home.html"><img id="homebutton" src="pictures/home_icon.PNG" alt="Homebutton"></a>
                 </td>
                 <th>
-                    <h1>Board 6</h1>
+                    <h1 id="boardname" contentEditable="true" spellcheck="false">Boardname</h1>
                 </th>
+                <td>
+                    <div class="toggle_btn" onclick="toggleSidebar()">
+                        <img class="burger" src="pictures/burger_icon.jpeg">
+                    </div>
+                </td>
             </tr>
+            <tr id="nav">
+                <td>
+
+                </td>
+                <td id="navigation">
+                    <select onchange="location = this.value;">
+                        <option selected="selected" disabled="disabled">Bitte auswählen</option>
+                        <option value="board.html">Board 1</option>
+                        <option value="board2.html">Board 2</option>
+                        <option value="board3.html">Board 3</option>
+                        <option value="board4.html">Board 4</option>
+                        <option value="board5.html">Board 5</option>
+                        <option value="board6.html">Board 6</option>
+                    </select>
+                </td>
+            </tr>
+
         </table>
         <span id="heute">today</span>
 

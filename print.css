@@ -1,6 +1,9 @@
 /*Druckansicht*/
 
 @media print {
+    * {
+        font-family: Arial, Helvetica, sans-serif;
+    }
     img {
         display: none;
     }

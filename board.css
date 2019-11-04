@@ -539,17 +539,17 @@ li {
 
 @media only screen and (min-width: 900px) {
     #home_button {
-        vertical-align: top;
-        padding-top: 7px;
+        width: 45px;
         padding-left: 10px;
     }
     #boardname {
-        width: 80px;
-        margin-top: -177px;
-        margin-left: -70px;
+        width: 100px;
     }
     td .toggle_btn {
         width: 66px;
+    }
+    .table_header {
+        width: 100vw;
     }
     body {
         height: 100vh;
@@ -567,12 +567,13 @@ li {
         color: #747474;
         font-size: 14px;
         float: right;
-        margin-right: 25px;
-        margin-top: -416px;
         visibility: visible;
+        margin-top: -83px;
+        margin-right: 20px;
     }
     .burger {
-        visibility: hidden;
+        height: 45px;
+        visibility: collapse;
     }
     content {
         grid-area: content;

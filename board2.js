@@ -247,13 +247,13 @@ async function loadData() { //wird in board.html mit body onload="loadData()" ge
 }
 //-----------------------------------------------------
 //NEUE LISTE
-async function createList(id, name) {
+function createList(id, name) {
     let listenName = {
         name: document.getElementById('input_titel').value //Liest Wert aus dem Input-Feld aus (=Listen-Titel)
     };
     console.log("Async function createList:" + document.getElementById('input_titel').value)
 
-    var res = await fetch(linkBasis, {
+    fetch(linkBasis, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -266,8 +266,7 @@ async function createList(id, name) {
         })
         .then((data) => {
             console.log(data);
-            newList(name);
-            location.reload(true); //Browserfenster neuladen --> Evtl andere Möglichkeit dafür??
+            newList(data._id, data.name);
         })
         .catch(error => console.log('ERROR'))
 
@@ -299,7 +298,7 @@ function deleteList(id) {
 }
 //-----------------------------------------------------
 //ITEM HINZUFÜGEN
-async function createItem(id, taskName) {
+function createItem(id, taskName) {
     console.log("create item for list: " + id)
 
     var inputValue = {
@@ -310,7 +309,7 @@ async function createItem(id, taskName) {
     var linkGesamt = linkBasis + id + linkEnde;
     console.log(linkGesamt);
 
-    await fetch(linkGesamt, {
+    fetch(linkGesamt, {
         method: 'post',
         headers: {
             'Accept': 'application/json',
@@ -324,12 +323,12 @@ async function createItem(id, taskName) {
         console.log("success")
         console.log(data);
         newItem(id, inputValue.name, data._id)
-        location.reload(true); //Browserfenster neuladen --> Evtl andere Möglichkeit dafür??
+        location.reload(true); //Browserfenster neuladen
     }).catch(() => console.log('ERROR'))
 }
 //-----------------------------------------------------
 //ITEM LÖSCHEN
-async function deleteItem(listId, itemId) {
+function deleteItem(listId, itemId) {
     var linkEnde = "/items/" + itemId;
     var linkGesamt = linkBasis + listId + linkEnde;
 
@@ -350,7 +349,7 @@ async function deleteItem(listId, itemId) {
 }
 //-----------------------------------------------------
 //UPDATE ITEM CHECKED
-async function updateItemChecked(listId, itemId) {
+function updateItemChecked(listId, itemId) {
     var linkEnde = "/items/" + itemId;
     var linkGesamt = linkBasis + listId + linkEnde;
 
@@ -374,7 +373,7 @@ async function updateItemChecked(listId, itemId) {
 
 //-----------------------------------------------------
 //UPDATE ITEM UNCHECKED
-async function updateItemUnchecked(listId, itemId) {
+function updateItemUnchecked(listId, itemId) {
     var linkEnde = "/items/" + itemId;
     var linkGesamt = linkBasis + listId + linkEnde;
 
@@ -398,7 +397,7 @@ async function updateItemUnchecked(listId, itemId) {
 }
 //-----------------------------------------------------
 //UPDATE ITEM NAME
-async function updateItemName(id, itemId, taskName) {
+function updateItemName(id, itemId, taskName) {
     var linkEnde = "/items/" + itemId;
     var linkGesamt = linkBasis + id + linkEnde;
     var inputValue = {
@@ -418,7 +417,7 @@ async function updateItemName(id, itemId, taskName) {
     }).then((data) => {
         console.log(data);
         newItem(id, inputValue.name, data._id)
-        location.reload(true); //Browserfenster neuladen --> Evtl andere Möglichkeit dafür??
+        location.reload(true); //Browserfenster neuladen
     }).catch(() => console.log('ERROR'))
 }
 //-----------------------------------------------------

@@ -9,20 +9,14 @@
         visibility: hidden;
     }
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
 html {
     -webkit-text-size-adjust: 100%;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
 body {
     height: 100vh;
     width: 100vw;
@@ -52,7 +46,6 @@ h1 {
     color: white;
     font-size: 14px;
 }
-
 
 #heute {
     color: #747474;

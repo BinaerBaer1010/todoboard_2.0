@@ -195,11 +195,7 @@ function newItem(id, taskName, itemId, status) {
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle('active');
     document.getElementById("content").classList.toggle('active');
-<<<<<<< HEAD
     document.getElementById("navigation").classList.toggle('active')
-=======
-document.getElementById("navigation").classList.toggle('active')
->>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
     document.getElementById("nav").classList.toggle('active')
 }
 

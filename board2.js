@@ -195,6 +195,8 @@ function newItem(id, taskName, itemId, status) {
 function toggleSidebar() {
     document.getElementById("sidebar").classList.toggle('active');
     document.getElementById("content").classList.toggle('active');
+    document.getElementById("navigation").classList.toggle('active')
+    document.getElementById("nav").classList.toggle('active')
 }
 
 function changeImage() {
@@ -265,7 +267,7 @@ async function createList(id, name) {
         .then((data) => {
             console.log(data);
             newList(name);
-            location.reload(true); //--> Evtl andere Möglichkeit dafür??
+            location.reload(true); //Browserfenster neuladen --> Evtl andere Möglichkeit dafür??
         })
         .catch(error => console.log('ERROR'))
 
@@ -322,8 +324,7 @@ async function createItem(id, taskName) {
         console.log("success")
         console.log(data);
         newItem(id, inputValue.name, data._id)
-        location.reload(true); //--> Evtl andere Möglichkeit dafür??
-        //loadData();
+        location.reload(true); //Browserfenster neuladen --> Evtl andere Möglichkeit dafür??
     }).catch(() => console.log('ERROR'))
 }
 //-----------------------------------------------------
@@ -342,9 +343,8 @@ async function deleteItem(listId, itemId) {
         })
         .then(res => res.json())
         .then((res) => {
-            //Todo implement delete view logic
             var item = document.getElementById("listitem_" + itemId);
-            item.remove();
+            item.remove(); // Delete Item in View
             console.log("Item successfully deleted");
         })
 }
@@ -418,8 +418,7 @@ async function updateItemName(id, itemId, taskName) {
     }).then((data) => {
         console.log(data);
         newItem(id, inputValue.name, data._id)
-        location.reload(true); //--> Evtl andere Möglichkeit dafür??
-        //loadData();
+        location.reload(true); //Browserfenster neuladen --> Evtl andere Möglichkeit dafür??
     }).catch(() => console.log('ERROR'))
 }
 //-----------------------------------------------------

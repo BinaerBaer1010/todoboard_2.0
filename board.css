@@ -6,25 +6,37 @@
 #wallpaper_canyon {
     background-image: url("https://wallpapercave.com/wp/wp3076548.jpg");
     background-size: cover;
+<<<<<<< HEAD
     background-attachment: fixed;
+=======
+>>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
 }
 
 #wallpaper_mountains {
     background-image: url("https://images.pexels.com/photos/9754/mountains-clouds-forest-fog.jpg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     background-size: cover;
+<<<<<<< HEAD
     background-attachment: fixed;
+=======
+>>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
 }
 
 #wallaper_eveningMountain {
     background-image: url("https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
     background-size: cover;
+<<<<<<< HEAD
     background-attachment: fixed;
+=======
+>>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
 }
 
 #wallpaper_city {
     background-image: url("https://cdn.wallpapersafari.com/0/97/ftJ2a9.jpg");
     background-size: cover;
+<<<<<<< HEAD
     background-attachment: fixed;
+=======
+>>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
 }
 
 header {
@@ -567,6 +579,7 @@ li {
         color: #747474;
         font-size: 14px;
         float: right;
+<<<<<<< HEAD
         margin-right: 25px;
         margin-top: -416px;
         visibility: visible;
@@ -574,6 +587,15 @@ li {
     .burger {
         visibility: hidden;
     }
+=======
+        margin-right: 20px;
+        margin-top: -416px;
+        visibility: visible;
+    }
+    .burger {
+        visibility: hidden;
+    }
+>>>>>>> 6a8467e2ad81bf17b88de71ccd69607f2b6ab740
     content {
         grid-area: content;
         transition: all 300ms linear;
